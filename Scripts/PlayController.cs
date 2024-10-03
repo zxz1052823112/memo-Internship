@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayController : MonoBehaviour
 {
     public float speed = 5.0f;
+    private Rigidbody2D _rigidbody2D;
     private Animator _animator;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
 
@@ -46,7 +48,7 @@ public class PlayController : MonoBehaviour
             _animator.SetBool(name: "run", value: false);
         }
 
-        Vector2 position = transform.position;
+        Vector2  position = transform.position;
         position.x += x * speed * Time.deltaTime;
         position.y += y * speed * Time.deltaTime;
         transform.position = position;
