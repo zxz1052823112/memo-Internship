@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Timers;
+using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class BulletAttack : MonoBehaviour
 {
     [SerializeField] private string targetTag;
-    [SerializeField] private int damage;
-
+    private int damage;
     private bool _canAttack = true;
+
+    // Allow other scripts to set damage
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+        Debug.Log("BulletAttack damage set to: " + damage);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,16 +35,17 @@ public class Attack : MonoBehaviour
         {
             var damageable = other.GetComponent<Damageable>();
 
-            // 检查是否成功获取到 Damageable 组件
+            // Check if Damageable component exists
             if (damageable != null)
             {
-                damageable.TakeDamage(damage);
+                damageable.TakeDamage(damage);  // Use the updated damage value
+                //Debug.Log(damage);
                 TimersManager.SetTimer(this, 2, canAttack);
                 _canAttack = false;
             }
             else
             {
-                Debug.LogWarning("碰撞对象缺少 Damageable 组件");
+                Debug.LogWarning("Collision object missing Damageable component");
             }
         }
     }

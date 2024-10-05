@@ -17,5 +17,9 @@ public class BrainMonsterMovement : MonoBehaviour
         direction.Normalize();
         var targetPosition = position + direction;
         rb.DOMove(targetPosition, speed).SetSpeedBased();
+        if (direction.x < 0)
+            transform.eulerAngles = new Vector3(x: 0f, y: 180f, z: 0f);
+        else
+            transform.eulerAngles = new Vector3(x: 0f, y: 0f, z: 0f);
     }
 }

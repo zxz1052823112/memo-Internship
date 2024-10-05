@@ -7,6 +7,7 @@ public class PlayController : MonoBehaviour
     public float speed = 5.0f;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
+    //public float pickupRange = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,16 @@ public class PlayController : MonoBehaviour
         if ((x < 0.001f && x > -0.001f) && (y < 0.001f && y > -0.001f))
         {
             _animator.SetBool(name: "run", value: false);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("鼠标右键被按下");
+            _animator.SetBool("Skill", true);
+        }
+        else
+        {
+            _animator.SetBool("Skill", false);
         }
 
         Vector2  position = transform.position;
