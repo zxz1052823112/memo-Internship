@@ -19,8 +19,19 @@ public class ExperienceLevelController : MonoBehaviour
     // 最大 damage 限制
     public int maxDamageIncrease = 26;
 
+    // 引用 Health 组件
+    private Health playerHealth;
+    private int initialHealth;
+
     void Start()
     {
+        // 获取玩家的 Health 组件并保存初始生命值
+        playerHealth = FindObjectOfType<Health>();
+        if (playerHealth != null)
+        {
+            initialHealth = playerHealth.Value;
+        }
+
         // 初始化经验等级列表，假设第一级经验为100
         if (expLevels.Count == 0)
         {
@@ -66,6 +77,13 @@ public class ExperienceLevelController : MonoBehaviour
         // 调用更新所有子弹伤害的方法
         Debug.Log("Calling UpdateAllBulletsDamage");
         UpdateAllBulletsDamage();
+
+        // 恢复生命值到初始值
+        if (playerHealth != null)
+        {
+            playerHealth.DecreaseHealth(-initialHealth); // 恢复生命值到初始值
+            Debug.Log("Health restored to: " + initialHealth);
+        }
     }
 
     void UpdateAllBulletsDamage()
@@ -77,5 +95,4 @@ public class ExperienceLevelController : MonoBehaviour
             bullet.UpdateDamage(Mathf.Min(currentLevel, maxDamageIncrease));
         }
     }
-
 }

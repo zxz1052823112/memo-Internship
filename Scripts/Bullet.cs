@@ -46,7 +46,6 @@ public class Bullet : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         float distance = (transform.position - startPos).sqrMagnitude;
