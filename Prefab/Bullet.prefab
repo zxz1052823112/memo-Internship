@@ -97,7 +97,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4880562542472095446}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -278,7 +278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 40
   targetTag: Enemy
-  damage: 5
   destroyDistance: 200
 --- !u!114 &4297681258081054749
 MonoBehaviour:
